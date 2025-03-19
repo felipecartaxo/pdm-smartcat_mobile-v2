@@ -1,0 +1,24 @@
+{
+  "mensagens": [
+    {
+      "id": 1,
+      "texto": "Sem procastinação hoje, hein!"
+    },
+    {
+      "id": 2,
+      "texto": "Quantas coisas iremos concluir hoje???"
+    },
+    {
+      "id": 3,
+      "texto": "Não espero menos do que todas as tarefas concluídas!"
+    },
+    {
+      "id": 4,
+      "texto": "Tá, acho que hoje podemos pegar mais leve..."
+    },
+    {
+      "id": 5,
+      "texto": "Sextou?!"
+    }
+  ]
+}
