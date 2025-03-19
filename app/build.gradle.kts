@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.application.smartcat"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.application.smartcat"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -76,12 +76,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.kotlinx.datetime)
-    implementation("com.google.accompanist:accompanist-pager:0.30.1")
+    implementation(libs.accompanist.pager)
 
     // Dependencias API REST
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
-    implementation("io.coil-kt.coil3:coil-compose:3.1.0")
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
+    //    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    //    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    //    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    //    implementation("io.coil-kt.coil3:coil-compose:3.1.0")
+    //    implementation("androidx.compose.material:material-icons-extended:1.7.8")
 }
