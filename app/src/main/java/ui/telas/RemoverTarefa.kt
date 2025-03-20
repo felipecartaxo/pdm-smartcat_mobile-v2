@@ -44,7 +44,7 @@ fun RemoverTarefa(tarefaId: String, navController: NavController) {
         val notification = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(android.R.drawable.ic_delete) // Ícone de lixeira
             .setContentTitle("Tarefa removida!")
-            .setContentText("Uma tarefa removida com sucesso!")
+            .setContentText("Uma tarefa foi removida com sucesso!")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
             .setVibrate(longArrayOf(500, 500))
