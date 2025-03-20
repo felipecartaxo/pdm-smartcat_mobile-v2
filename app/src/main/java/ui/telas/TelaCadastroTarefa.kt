@@ -81,6 +81,7 @@ fun TelaCadastroTarefa(navController: NavController) {
             .setContentText("Tarefa '$titulo' cadastrada com sucesso!")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
+            .setVibrate(longArrayOf(500, 500))
             .build()
 
         notificationManager.notify(System.currentTimeMillis().toInt(), notification)

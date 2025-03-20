@@ -78,6 +78,7 @@ fun EditarTarefa(
             .setContentText("A tarefa '$titulo' foi atualizada com sucesso")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
+            .setVibrate(longArrayOf(500, 500))
             .build()
 
         notificationManager.notify(System.currentTimeMillis().toInt(), notification)
