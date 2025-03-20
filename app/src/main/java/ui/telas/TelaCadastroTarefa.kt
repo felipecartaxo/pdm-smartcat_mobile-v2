@@ -60,6 +60,7 @@ fun TelaCadastroTarefa(navController: NavController) {
         localDateTime.dayOfMonth
     )
 
+    // Lógica para exibir notificação
     fun exibirNotificacaoCadastro() {
 
         // Canal de notificação
@@ -77,8 +78,8 @@ fun TelaCadastroTarefa(navController: NavController) {
 
         // Cria a notificação
         val notification = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("Nova Tarefa Criada!")
+            .setSmallIcon(android.R.drawable.ic_dialog_alert)
+            .setContentTitle("Nova tarefa criada!")
             .setContentText("Tarefa '$titulo' cadastrada com sucesso!")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
