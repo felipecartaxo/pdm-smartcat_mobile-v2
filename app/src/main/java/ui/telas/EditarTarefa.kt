@@ -1,6 +1,10 @@
 package com.application.smartcat.ui.telas
 
 import android.app.DatePickerDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.core.app.NotificationCompat
 import androidx.navigation.NavController
 import com.application.smartcat.model.Tarefa
 import com.application.smartcat.model.TarefaDAO
@@ -38,6 +43,7 @@ fun EditarTarefa(
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val tarefaDAO = TarefaDAO()
+    val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
     var titulo by remember { mutableStateOf("") }
     var descricao by remember { mutableStateOf("") }
@@ -48,6 +54,34 @@ fun EditarTarefa(
 
     val statusOpcoes = listOf("A Fazer",  "Concluído")
     val statusValores = listOf(1, 2) // definindo o status das tarefas criadas
+
+    // Lógica para exibir notificação
+    fun exibirNotificacaoEdicao() {
+        // Canal de notificação
+        val channelId = "edicao_tarefa"
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel(
+                channelId,
+                "Edição de Tarefas",
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = "Notificações de tarefas atualizadas"
+                notificationManager.createNotificationChannel(this)
+            }
+        }
+
+        // Cria a notificação
+        val notification = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(android.R.drawable.ic_menu_edit)
+            .setContentTitle("Tarefa atualizada!")
+            .setContentText("A tarefa '$titulo' foi atualizada com sucesso")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
+            .build()
+
+        notificationManager.notify(System.currentTimeMillis().toInt(), notification)
+    }
 
     LaunchedEffect(tarefaId) {
         tarefaDAO.buscarPorId(tarefaId) { tarefa ->
@@ -177,7 +211,15 @@ fun EditarTarefa(
                                     )
                                     scope.launch(Dispatchers.IO) {
                                         tarefaDAO.alterar(tarefaId, tarefaAtualizada) { sucesso ->
-                                            if (sucesso) navController.popBackStack()
+                                            scope.launch(Dispatchers.Main) {
+                                                if (sucesso) {
+                                                    // Lança notificação
+                                                    exibirNotificacaoEdicao()
+                                                    navController.popBackStack()
+                                                } else {
+                                                    Toast.makeText(context, "Erro ao atualizar", Toast.LENGTH_SHORT).show()
+                                                }
+                                            }
                                         }
                                     }
                                 }
