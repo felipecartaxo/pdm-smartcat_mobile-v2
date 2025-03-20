@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.core.app.NotificationCompat
 import androidx.navigation.NavController
-import com.application.smartcat.R
 import com.application.smartcat.model.Tarefa
 import com.application.smartcat.model.TarefaDAO
 import com.application.smartcat.util.Sessao
@@ -62,7 +61,6 @@ fun TelaCadastroTarefa(navController: NavController) {
 
     // Lógica para exibir notificação
     fun exibirNotificacaoCadastro() {
-
         // Canal de notificação
         val channelId = "cadastro_tarefa"
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -78,7 +76,7 @@ fun TelaCadastroTarefa(navController: NavController) {
 
         // Cria a notificação
         val notification = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(android.R.drawable.ic_dialog_alert)
+            .setSmallIcon(android.R.drawable.ic_input_add)
             .setContentTitle("Nova tarefa criada!")
             .setContentText("Tarefa '$titulo' cadastrada com sucesso!")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
